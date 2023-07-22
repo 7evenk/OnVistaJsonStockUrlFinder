@@ -13,8 +13,23 @@ window.addEventListener('message', function(event) {
       overlay.style.zIndex = '10000';
       overlay.style.border = '2px solid white';
       overlay.style.borderRadius = '10px';
-      overlay.innerText = 'OnVista API Request Detected:\n\n' + event.data.url;
       document.body.appendChild(overlay);
+
+      let apiHeading = document.createElement('h2');
+      apiHeading.style.color = 'white';
+      apiHeading.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.5)';
+      apiHeading.style.fontFamily = 'Arial, sans-serif';
+      apiHeading.style.fontSize = '24px';
+      apiHeading.innerText = 'OnVista API Request Detected';
+      overlay.appendChild(apiHeading);
+
+      let apiUrlText = document.createElement('p');
+      apiUrlText.style.color = 'white';
+      apiUrlText.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.5)';
+      apiUrlText.style.fontFamily = 'Arial, sans-serif';
+      apiUrlText.style.fontSize = '18px';
+      apiUrlText.innerText = event.data.url;
+      overlay.appendChild(apiUrlText);
 
       let closeButton = document.createElement('button');
       closeButton.style.position = 'absolute';
@@ -43,14 +58,31 @@ window.addEventListener('message', function(event) {
           }
       });
 
+      let ppHeading = document.createElement('h2');
+      ppHeading.style.color = 'white';
+      ppHeading.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.5)';
+      ppHeading.style.fontFamily = 'Arial, sans-serif';
+      ppHeading.style.fontSize = '24px';
+      ppHeading.innerText = 'Portfolio Performance Stock URL';
+      overlay.appendChild(ppHeading);
+
+      let ppUrl = event.data.url.replace(/(https:\/\/api.onvista.de\/api\/v1\/instruments\/.*)(chart_history\?)(.*)(idNotation=[0-9]*)(.*)/, '$1eod_history?$4&range=Y5&startDate=2020-01-01');
+      let ppUrlText = document.createElement('p');
+      ppUrlText.style.color = 'white';
+      ppUrlText.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.5)';
+      ppUrlText.style.fontFamily = 'Arial, sans-serif';
+      ppUrlText.style.fontSize = '18px';
+      ppUrlText.innerText = ppUrl;
+      overlay.appendChild(ppUrlText);
+
       let heading = document.createElement('h2');
       heading.style.position = 'absolute';
       heading.style.bottom = '50px';
-      heading.style.left = '30%'; // Verschiebt die Überschrift etwas mehr in die Mitte
+      heading.style.left = '33%'; // Verschiebt die Überschrift etwas mehr in die Mitte
       heading.style.color = 'white';
       heading.style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.5)';
       heading.style.fontFamily = 'Arial, sans-serif';
-      heading.style.fontSize = '24px';
+      heading.style.fontSize = '18px';
       heading.innerText = 'Sponsor Me';
       overlay.appendChild(heading);
 

@@ -2,15 +2,14 @@ window.addEventListener('message', function (event) {
   if (event.data.type && event.data.type === 'ONVISTA_API_REQUEST') {
     let ppUrl = event.data.url.replace(/(https:\/\/api.onvista.de\/api\/v1\/instruments\/.*)(chart_history\?)(.*)(idNotation=[0-9]*)(.*)/, '$1eod_history?$4&range=Y5&startDate=2020-01-01');
 
+    let existingOverlay = document.getElementById('overlay');
+    if (existingOverlay) {
+      document.body.removeChild(existingOverlay);
+    }
+
     let template = `
-      <div style="position: fixed; left: 25%; top: 25%; width: 50%; height: 50%; background-color: rgba(0, 0, 0, 0.8); color: white; font-size: 20px; padding: 20px; z-index: 10000; border: 2px solid white; border-radius: 10px; overflow: auto;">
+      <div id="overlay" style="position: fixed; left: 25%; top: 25%; width: 50%; height: 50%; background-color: rgba(0, 0, 0, 0.8); color: white; font-size: 20px; padding: 20px; z-index: 10000; border: 2px solid white; border-radius: 10px; overflow: auto;">
         <button style="position: absolute; right: 10px; top: 10px; font-size: 20px; color: white; background-color: black; border: none; border-radius: 50%; width: 30px; height: 30px; text-align: center;" onclick="document.body.removeChild(this.parentNode);">X</button>
-        <!--<div>
-          <h2 style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 24px;">OnVista API Request Detected</h2>
-          <div style="display: flex;">
-            <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">${event.data.url}</p>
-          </div>
-        </div>-->
         <div>
           <h2 style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 24px;">Portfolio Performance Stock URL</h2>
           <div style="display: flex;">
@@ -32,10 +31,8 @@ window.addEventListener('message', function (event) {
     templateElement.innerHTML = template.trim();
     document.body.appendChild(templateElement.content.firstChild);
 
-    // Referenzieren Sie das Overlay-Element erneut
-    let overlay = document.body.lastChild;
+    let overlay = document.getElementById('overlay');
 
-    // Fügen Sie den Event-Listener für die Escape-Taste hinzu
     window.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
         if (document.body.contains(overlay)) {

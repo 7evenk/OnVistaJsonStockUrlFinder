@@ -1,5 +1,33 @@
+let switchState = false;
+
+let switchOverlay = document.createElement('div');
+switchOverlay.style.position = 'fixed';
+switchOverlay.style.right = '10px';
+switchOverlay.style.top = '10px';
+switchOverlay.style.width = '50px';
+switchOverlay.style.height = '50px';
+switchOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+switchOverlay.style.color = 'white';
+switchOverlay.style.fontSize = '14px';
+switchOverlay.style.padding = '5px';
+switchOverlay.style.zIndex = '10000';
+switchOverlay.style.border = '2px solid white';
+switchOverlay.style.borderRadius = '10px';
+switchOverlay.style.textAlign = 'center';
+switchOverlay.style.cursor = 'pointer';
+switchOverlay.style.display = 'flex';
+switchOverlay.style.justifyContent = 'center';
+switchOverlay.style.alignItems = 'center';
+switchOverlay.innerText = 'OFF';
+document.body.appendChild(switchOverlay);
+
+switchOverlay.addEventListener('click', function() {
+  switchState = !switchState;
+  switchOverlay.innerText = switchState ? 'ON' : 'OFF';
+});
+
 window.addEventListener('message', function (event) {
-  if (event.data.type && event.data.type === 'ONVISTA_API_REQUEST') {
+  if (event.data.type && event.data.type === 'ONVISTA_API_REQUEST' && switchState) {
     let ppUrl = event.data.url.replace(/(https:\/\/api.onvista.de\/api\/v1\/instruments\/.*)(chart_history\?)(.*)(idNotation=[0-9]*)(.*)/, '$1eod_history?$4&range=Y5&startDate=2020-01-01');
 
     let existingOverlay = document.getElementById('overlay');

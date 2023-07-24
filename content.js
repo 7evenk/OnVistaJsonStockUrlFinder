@@ -38,12 +38,45 @@ window.addEventListener('message', function (event) {
     let template = `
       <div id="overlay" style="position: fixed; left: 25%; top: 25%; width: 50%; height: 50%; background-color: rgba(0, 0, 0, 0.8); color: white; font-size: 20px; padding: 20px; z-index: 10000; border: 2px solid white; border-radius: 10px; overflow: auto;">
         <button style="position: absolute; right: 10px; top: 10px; font-size: 20px; color: white; background-color: black; border: none; border-radius: 50%; width: 30px; height: 30px; text-align: center;" onclick="document.body.removeChild(this.parentNode);">X</button>
+        <!--<div>
+          <h2 style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 24px;">OnVista API Request Detected</h2>
+          <div style="display: flex;">
+            <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">${event.data.url}</p>
+          </div>
+        </div>-->
         <div>
           <h2 style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 24px;">Portfolio Performance Stock URL</h2>
           <div style="display: flex;">
             <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">${ppUrl}</p>
             <button id="copyButton" style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText('${ppUrl}'); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
           </div>
+        </div>
+        <div>
+        <div style="display: flex; justify-content: space-between;">
+          <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">Pfad zum Datum: </p>
+          <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">$.datetimeLast[*]</p>
+          <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
+        </div> 
+        <div style="display: flex; justify-content: space-between;">
+          <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">Pfad zum Kurs: </p>
+          <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">$.last[*]</p>
+          <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">Pfad zum Tagestief: </p>
+          <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">$.low[*]</p>
+          <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">Pfad zum Tageshoch: </p>
+          <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">$.high[*]</p>
+          <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">Pfad zum Volumen: </p>
+          <p style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">$.volume[*]</p>
+          <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
+        </div>
         </div>
         <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
           <div style="margin-left: -24px";>

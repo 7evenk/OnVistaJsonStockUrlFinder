@@ -46,32 +46,32 @@ window.addEventListener('message', function (event) {
           <div style="display: grid; grid-template-columns: 20% 70% 10%; padding-top: 10px;">
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">Kurs URL: </span>
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px; text-align: center;">${ppUrl}</span>
-            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
+            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.color = 'black'; this.style.backgroundColor = 'white'; setTimeout(() => {this.style.color = 'white'; this.style.backgroundColor = 'black';}, 1000);">Copy</button>
           </div> 
           <div style="display: grid; grid-template-columns: 20% 70% 10%; padding-top: 10px;">
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">Pfad zum Datum: </span>
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px; text-align: center;">$.datetimeLast[*]</span>
-            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
+            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.color = 'black'; this.style.backgroundColor = 'white'; setTimeout(() => {this.style.color = 'white'; this.style.backgroundColor = 'black';}, 1000);">Copy</button>
           </div> 
           <div style="display: grid; grid-template-columns: 20% 70% 10%; padding-top: 10px;">
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">Pfad zum Kurs: </span>
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px; text-align: center;">$.last[*]</span>
-            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
+            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.color = 'black'; this.style.backgroundColor = 'white'; setTimeout(() => {this.style.color = 'white'; this.style.backgroundColor = 'black';}, 1000);">Copy</button>
           </div>
           <div style="display: grid; grid-template-columns: 20% 70% 10%; padding-top: 10px;">
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">Pfad zum Tagestief: </span>
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px; text-align: center;">$.low[*]</span>
-            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
+            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.color = 'black'; this.style.backgroundColor = 'white'; setTimeout(() => {this.style.color = 'white'; this.style.backgroundColor = 'black';}, 1000);">Copy</button>
           </div>
           <div style="display: grid; grid-template-columns: 20% 70% 10%; padding-top: 10px;">
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">Pfad zum Tageshoch: </span>
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px; text-align: center;">$.high[*]</span>
-            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
+            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.color = 'black'; this.style.backgroundColor = 'white'; setTimeout(() => {this.style.color = 'white'; this.style.backgroundColor = 'black';}, 1000);">Copy</button>
           </div>
           <div style="display: grid; grid-template-columns: 20% 70% 10%; padding-top: 10px;">
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px;">Pfad zum Volumen: </span>
             <span style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 18px; text-align: center;">$.volume[*]</span>
-            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.backgroundColor = 'green'; setTimeout(() => this.style.backgroundColor = 'black', 1000);">Copy</button>
+            <button style="font-size: 20px; color: white; background-color: black; border: none; border-radius: 10px; text-align: center;" onclick="navigator.clipboard.writeText(this.previousElementSibling.innerText); this.style.color = 'black'; this.style.backgroundColor = 'white'; setTimeout(() => {this.style.color = 'white'; this.style.backgroundColor = 'black';}, 1000);">Copy</button>
           </div>
       </div>
       

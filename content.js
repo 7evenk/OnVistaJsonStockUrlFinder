@@ -27,7 +27,7 @@ switchOverlay.addEventListener('click', function() {
 
 window.addEventListener('message', function (event) {
   if (event.data.type && event.data.type === 'ONVISTA_API_REQUEST' && switchState) {
-    let ppUrl = event.data.url.replace(/(https:\/\/api.onvista.de\/api\/v1\/instruments\/.*)(chart_history\?)(.*)(idNotation=[0-9]*)(.*)/, '$1eod_history?$4&range=Y5&startDate=2020-01-01');
+    let ppUrl = event.data.url.replace(/(https:\/\/api.onvista.de\/api\/v1\/instruments\/.*)(chart_history\?)(.*)(idNotation=[0-9]*)(.*)/, '$1eod_history?$4&range=Y5&startDate={TODAY:yyyy-MM-dd:-P5Y}');
 
     let existingOverlay = document.getElementById('overlay');
     if (existingOverlay) {

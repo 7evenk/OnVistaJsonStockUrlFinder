@@ -20,14 +20,60 @@ switchOverlay.style.alignItems = 'center';
 switchOverlay.innerText = 'OFF';
 document.body.appendChild(switchOverlay);
 
-switchOverlay.addEventListener('click', function() {
+switchOverlay.addEventListener('click', function () {
   switchState = !switchState;
   switchOverlay.innerText = switchState ? 'ON' : 'OFF';
 });
 
 window.addEventListener('message', function (event) {
   if (event.data.type && event.data.type === 'ONVISTA_API_REQUEST' && switchState) {
-    let ppUrl = event.data.url.replace(/(https:\/\/api.onvista.de\/api\/v1\/instruments\/.*)(chart_history\?)(.*)(idNotation=[0-9]*)(.*)/, '$1eod_history?$4&range=Y5&startDate={TODAY:yyyy-MM-dd:-P5Y}');
+    let url = event.data.url;
+
+    let urlDate = null;
+    try {
+      urlDate = url.split("startDate=")[1].split("T")[0];
+    } catch {     
+      urlDate = null;
+    }
+
+    let urlDateObj = null;
+    if (!urlDate && url.includes("range=D1")) {
+      let yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      urlDateObj = yesterday;
+    } else {
+      urlDateObj = new Date(urlDate);
+    }    
+
+    let currentDate = new Date();
+
+    let yearsDifference = currentDate.getFullYear() - urlDateObj.getFullYear();
+
+    let range = "";
+    let rangeInv = "";
+
+    if (yearsDifference === 0) {
+      let monthsDifference = currentDate.getMonth() - urlDateObj.getMonth();
+      if (monthsDifference === 0) {
+        let weeksDifference = Math.floor((currentDate.getTime() - urlDateObj.getTime()) / (1000 * 60 * 60 * 24 * 7));
+        if (weeksDifference === 0) {
+          let daysDifference = Math.floor((currentDate.getTime() - urlDateObj.getTime()) / (1000 * 60 * 60 * 24));
+          range = "D" + daysDifference;
+          rangeInv = daysDifference + "D";
+        } else {
+          range = "M" + weeksDifference; // Wx range dows not work in PP
+          rangeInv = weeksDifference + "W";
+        }
+      } else {
+        range = "M" + monthsDifference;
+        rangeInv = monthsDifference + "M";
+      }
+    } else {
+      range = "Y" + yearsDifference;
+      rangeInv = yearsDifference + "Y";
+    }
+
+    let ppUrl = event.data.url.replace(/(https:\/\/api.onvista.de\/api\/v1\/instruments\/.*)(chart_history\?)(.*)(idNotation=[0-9]*)(.*)/, '$1eod_history?$4&range=' + range + '&startDate={TODAY:yyyy-MM-dd:-P' + rangeInv + '}');
 
     let existingOverlay = document.getElementById('overlay');
     if (existingOverlay) {
@@ -93,7 +139,7 @@ window.addEventListener('message', function (event) {
 
     let overlay = document.getElementById('overlay');
 
-    window.addEventListener('keydown', function(event) {
+    window.addEventListener('keydown', function (event) {
       if (event.key === 'Escape') {
         if (document.body.contains(overlay)) {
           document.body.removeChild(overlay);

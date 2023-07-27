@@ -1,14 +1,14 @@
 {
     "manifest_version": 3,
-    "name": "onvista Stock Url Finder for PP",
-    "version": "1.0.2",
+    "name": "onvista Stock Url Finder",
+    "version": "1.0.3",
     "permissions": ["webRequest", "scripting"],
     "host_permissions": ["<all_urls>"],
     "background": {
       "service_worker": "background.js"
     },
     "action": {
-      "default_title": "onvista Json Stock Url Finder for Portfolio Performance"
+      "default_title": "onvista Json Stock Url Finder"
     },
     "content_scripts": [
       {

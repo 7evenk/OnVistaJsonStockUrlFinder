@@ -32,7 +32,7 @@ window.addEventListener('message', function (event) {
     let urlDate = null;
     try {
       urlDate = url.split("startDate=")[1].split("T")[0];
-    } catch {     
+    } catch {
       urlDate = null;
     }
 
@@ -43,37 +43,44 @@ window.addEventListener('message', function (event) {
       urlDateObj = yesterday;
     } else {
       urlDateObj = new Date(urlDate);
-    }    
+    }
 
     let currentDate = new Date();
 
     let yearsDifference = currentDate.getFullYear() - urlDateObj.getFullYear();
 
     let range = "";
-    let rangeInv = "";
+    let startDate = "";
 
     if (yearsDifference === 0) {
       let monthsDifference = currentDate.getMonth() - urlDateObj.getMonth();
       if (monthsDifference === 0) {
+        currentDate.setHours(0, 0, 0, 0); // Nur Jahr Monat Tag berücksichtigen
+        urlDateObj.setHours(0, 0, 0, 0);
+        
         let weeksDifference = Math.floor((currentDate.getTime() - urlDateObj.getTime()) / (1000 * 60 * 60 * 24 * 7));
         if (weeksDifference === 0) {
           let daysDifference = Math.floor((currentDate.getTime() - urlDateObj.getTime()) / (1000 * 60 * 60 * 24));
           range = "D" + daysDifference;
-          rangeInv = daysDifference + "D";
+          let today = new Date();
+          let dayAgo = new Date();
+          dayAgo.setDate(today.getDate() - 1);
+
+          startDate = dayAgo.toISOString().split('T')[0];
         } else {
           range = "M" + weeksDifference; // Wx range dows not work in PP
-          rangeInv = weeksDifference + "W";
+          startDate = urlDate;
         }
       } else {
         range = "M" + monthsDifference;
-        rangeInv = monthsDifference + "M";
+        startDate = urlDate
       }
     } else {
       range = "Y" + yearsDifference;
-      rangeInv = yearsDifference + "Y";
+      startDate = urlDate;
     }
 
-    let ppUrl = event.data.url.replace(/(https:\/\/api.onvista.de\/api\/v1\/instruments\/.*)(chart_history\?)(.*)(idNotation=[0-9]*)(.*)/, '$1eod_history?$4&range=' + range + '&startDate={TODAY:yyyy-MM-dd:-P' + rangeInv + '}');
+    let ppUrl = event.data.url.replace(/(https:\/\/api.onvista.de\/api\/v1\/instruments\/.*)(chart_history\?)(.*)(idNotation=[0-9]*)(.*)/, '$1eod_history?$4&range=' + range + '&startDate=' + startDate);
 
     let existingOverlay = document.getElementById('overlay');
     if (existingOverlay) {

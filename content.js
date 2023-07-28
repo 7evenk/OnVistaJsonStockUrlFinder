@@ -57,7 +57,7 @@ window.addEventListener('message', function (event) {
       if (monthsDifference === 0) {
         currentDate.setHours(0, 0, 0, 0); // Nur Jahr Monat Tag berücksichtigen
         urlDateObj.setHours(0, 0, 0, 0);
-        
+
         let weeksDifference = Math.floor((currentDate.getTime() - urlDateObj.getTime()) / (1000 * 60 * 60 * 24 * 7));
         if (weeksDifference === 0) {
           let daysDifference = Math.floor((currentDate.getTime() - urlDateObj.getTime()) / (1000 * 60 * 60 * 24));
@@ -89,7 +89,7 @@ window.addEventListener('message', function (event) {
 
     let template = `
       <div id="overlay" style="position: fixed; left: 25%; top: 25%; width: 50%; height: 50%; background-color: rgba(0, 0, 0, 0.8); color: white; font-size: 20px; padding: 20px; z-index: 10000; border-radius: 10px;">
-      <h2 style="margin: 0; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 24px;">onvista Json Stock Url Finder for Portfolio Performance</h2>  
+      <h2 style="margin: 0; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: Arial, sans-serif; font-size: 24px;">onvista Json Stock Url Finder</h2>  
       <button style="position: absolute; right: 10px; top: 10px; font-size: 20px; color: white; background-color: black; border: none; border-radius: 50%; width: 30px; height: 30px; text-align: center;" onclick="document.body.removeChild(this.parentNode);">X</button>
         
         <div style="height: 70%; overflow: auto; padding-right: 20px;margin-top: 20px;">

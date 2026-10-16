@@ -1,0 +1,9 @@
+{
+  "slug": "onvista-stock-url-finder",
+  "files": [
+    "manifest.json",
+    "background.js",
+    "content.js",
+    "images/icon_128x128.png"
+  ]
+}

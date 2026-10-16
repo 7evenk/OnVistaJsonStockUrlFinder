@@ -1,0 +1,13 @@
+{
+  "name": "onvista-stock-url-finder",
+  "version": "1.0.5",
+  "private": true,
+  "scripts": {
+    "check": "node tools/check.cjs",
+    "build": "node tools/build.cjs",
+    "test": "node --test test/*.test.cjs"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

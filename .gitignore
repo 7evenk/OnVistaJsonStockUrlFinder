@@ -60,3 +60,8 @@ typings/
 *.crx
 *.nex
 *.xpi
+
+# Build output and local verification
+node_modules/
+dist/
+.local/
